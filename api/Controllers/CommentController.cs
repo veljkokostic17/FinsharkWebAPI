@@ -2,6 +2,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Formats.Asn1;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,7 +62,33 @@ namespace api.Controllers
 
             var commentModel = commentDto.ToCommentFromCreate(stockId);
             await _commentRepo.CreateAsync(commentModel);
-            return CreatedAtAction(nameof(GetById), new { id = commentModel }, commentModel.ToCommentDto());
+            return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateDto)
+        {
+            var comment = await _commentRepo.UpdateAsync(id, updateDto.ToCommentFromUpdate());
+            if (comment == null)
+            {
+                return NotFound("Comment not found");
+            }
+
+            return Ok(comment.ToCommentDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete ([FromRoute] int id)
+        {
+            var comment = await _commentRepo.DeleteAsync(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            
+            return NoContent();
         }
     }
 }
