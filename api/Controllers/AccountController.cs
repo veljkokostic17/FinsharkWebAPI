@@ -28,7 +28,7 @@ namespace api.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpPost("login")]
+        [HttpPost("login")] 
         public async Task<IActionResult> Login (LoginDto loginDto)
         {
             if (!ModelState.IsValid)
