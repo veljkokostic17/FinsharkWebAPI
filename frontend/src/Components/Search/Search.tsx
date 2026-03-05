@@ -1,7 +1,7 @@
-import React, { ChangeEvent, JSX, useState, MouseEvent, FormEvent } from 'react'
+import React, { ChangeEvent, JSX, useState, MouseEvent, FormEvent, SyntheticEvent } from 'react'
 
 interface Props {
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClick: (e: SyntheticEvent) => void;
     search: string | undefined;
     handleChange: (e: ChangeEvent<HTMLInputElement> ) => void;
 }   
