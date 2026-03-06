@@ -1,19 +1,23 @@
-import React, { JSX } from "react";
+import React, { JSX, SyntheticEvent } from "react";
 import "./Card.css";
 import { CompanySearch } from "../../company";
+import AddPortfolio from "../Portfolio/AddPortfolio/AddPortfolio";
+import { SynthesizedComment } from "typescript";
 
 interface Props {
   id: string;
   searchResult: CompanySearch;
-
+  onPortfolioCreate: (e: SyntheticEvent) => void;
 }
 
-const Card: React.FC<Props> = ({ id, searchResult } : Props): JSX.Element => {
+const Card: React.FC<Props> = ({
+  id,
+  searchResult,
+  onPortfolioCreate,
+}: Props): JSX.Element => {
   return (
     <div className="card">
-      <img
-        alt="Company Logo"
-      />
+      <img alt="Company Logo" />
       <div className="details">
         <h2>
           {searchResult.name} ({searchResult.symbol})
@@ -23,6 +27,10 @@ const Card: React.FC<Props> = ({ id, searchResult } : Props): JSX.Element => {
       <p className="info">
         {searchResult.exchangeShortName} - {searchResult.stockExchange}
       </p>
+      <AddPortfolio
+        onPortfolioCreate={onPortfolioCreate}
+        symbol={searchResult.symbol}
+      />
     </div>
   );
 };
