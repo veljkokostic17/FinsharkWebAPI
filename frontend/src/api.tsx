@@ -1,4 +1,4 @@
-import { CompanySearch } from "./company";
+import { CompanyProfile, CompanySearch } from "./company";
 import axios, { isAxiosError } from 'axios';
 
 
@@ -20,5 +20,16 @@ export const searchCompanies = async (query: string) => {
             console.log("unexpected error: ", error);
             return "An unexpected error has occured."
         }
+    }
+};
+
+export const getCompanyProfile = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyProfile[]>(
+            `https://financialmodelingprep.com/stable/profile?symbol=${query}&apikey=PvTxUxuQbVGCwm2n3kyT02S11Atc0IWq`
+        )
+        return data;
+    }   catch (error: any){
+        console.log("error message from API: ", error.message);
     }
 }
