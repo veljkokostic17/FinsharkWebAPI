@@ -4,11 +4,11 @@ import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
-import IncomeStatement from "../IncomeStatement/IncomeStatement";
 import DesignPage from "../Pages/DesignPage/DesignPage";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
 import BalanceSheet from "../Components/BalanceSheet/BalanceSheet";
-import CashFlowStatement from "../CashFlowStatement/CashFlowStatement";
+import CashFlowStatement from "../Components/CashFlowStatement/CashFlowStatement";
+import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 
 export const router = createBrowserRouter([
   {

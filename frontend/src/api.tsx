@@ -1,4 +1,4 @@
-import { CompanyBalanceSheet, CompanyCashFlow, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from "./company";
+import { CompanyBalanceSheet, CompanyCashFlow, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyTenK } from "./company";
 import axios, { isAxiosError } from 'axios';
 
 
@@ -71,6 +71,17 @@ export const getCashFlowStatement = async (query: string) => {
     try {
         const data = await axios.get<CompanyCashFlow[]>(
             `https://financialmodelingprep.com/stable/cash-flow-statement?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+        );
+        return data;
+    }   catch (error: any){
+        console.log("error message from API: ", error.message);
+    }
+}
+
+export const getTenK = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyTenK[]>(
+            `https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol=${query}&from=2024-01-01&to=2024-03-01&page=0&limit=100&apikey=${process.env.REACT_APP_API_KEY}`
         );
         return data;
     }   catch (error: any){

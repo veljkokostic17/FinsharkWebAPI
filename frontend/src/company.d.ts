@@ -1,3 +1,5 @@
+import { StringLiteral } from "typescript";
+
 export interface CompanySearch {
   currency: string;
   exchangeShortName: string;
@@ -307,4 +309,14 @@ export interface CompanyKeyMetrics {
   capexPerShareTTM: number;
   dividendPerShareTTM: number;
   debtToMarketCapTTM: number;
+}
+
+export interface CompanyTenK {
+  symbol: string;
+  filingDate: string;
+  acceptedDate: string;
+  cik: string;
+  formType: string;
+  link: string;
+  finalLink: string;
 }

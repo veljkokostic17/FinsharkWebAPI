@@ -5,6 +5,8 @@ import { CompanyProfile } from "../../company";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard";
 import Tile from "../../Components/Tile/Tile";
+import Spinner from "../../Components/Spinner/Spinner";
+import TenKFinder from "../../Components/TenKFinder/TenKFinder";
 
 interface Props {}
 
@@ -27,16 +29,17 @@ const CompanyPage = (props: Props) => {
           <Sidebar />
           <CompanyDashboard ticker={ticker!}>
             <Tile title="Company Name" subTitle={company.companyName}></Tile>
-            <Tile title="Price" subTitle={company.price.toString()}></Tile>
+            <Tile title="Price" subTitle={"$" + company.price.toString()}></Tile>
             <Tile title="Sector" subTitle={company.sector}></Tile>
-            <Tile title="Last dividend" subTitle={company.lastDividend.toString()}></Tile>
+            <Tile title="Last dividend" subTitle={"$" + company.lastDividend.toString()}></Tile>
+            <TenKFinder ticker={company.symbol} />
             <p className="bg-white shadow rounded text-medium text-gray-900 p-3 mt-1 m-4">
               {company.description}
             </p>
           </CompanyDashboard>
         </div>
       ) : (
-        <div>Company Not Found!</div>
+        <Spinner />
       )}
     </>
   );
