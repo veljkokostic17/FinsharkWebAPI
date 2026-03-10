@@ -12,7 +12,7 @@ export interface CompanyProfile {
   beta: number;
   volAvg: number;
   mktCap: number;
-  lastDiv: number;
+  lastDividend: number;
   range: string;
   changes: number;
   companyName: string;
